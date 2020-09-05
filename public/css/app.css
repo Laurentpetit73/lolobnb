@@ -1,0 +1,19 @@
+.ban h1, .ban p{
+    color:white;
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
+
+.ban{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.container{
+    margin-top: 20px;
+}
+
+.carousel-caption h5{
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+
+}

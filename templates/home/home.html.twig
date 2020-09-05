@@ -3,89 +3,92 @@
 {% block title %}-Le meilleur site{% endblock %}
 
 {% block body %}
-<div class="jumbotron mt-3">
-        <h1 class="display-3">Bienvenue sur LoloBnB</h1>
-            <p class="lead">Nous mettons en relation les voyageurs et lees propriétaires qui veulent profiter d'opportunités et gagné de l'argent en proposant leur bien en location !</p>
-                <hr class="my-4">
-            <p>Vous êtes voyageur ? Et vous voulez voir ou vous pourrez vous loger pour votre déplacement ? </p>
-            <p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button">Voir nos annonces !</a></p>
-        <h2 class=" text-center">Nos appartements Stars</h2>
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card bg-light mb-3">
-                    <div class="card-header text-center">
-                        3 chambres, <strong> 49 euros / nuits</strong> <br>
-                        <small>Pas encore noté</small>
-                    </div>
-                    <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
-                    <div class="card-body">
-                    <h4 class="card-title">Appartement de ouf !</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
-                    <a href="" class="btn btn-primary">Voir la Location</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-light mb-3">
-                    <div class="card-header text-center">
-                        3 chambres, <strong> 49 euros / nuits</strong> <br>
-                        <small>Pas encore noté</small>
-                    </div>
-                    <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
-                    <div class="card-body">
-                    <h4 class="card-title">Appartement de ouf !</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
-                    <a href="" class="btn btn-primary">Voir la Location</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-light mb-3">
-                    <div class="card-header text-center">
-                        3 chambres, <strong> 49 euros / nuits</strong> <br>
-                        <small>Pas encore noté</small>
-                    </div>
-                    <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
-                    <div class="card-body">
-                    <h4 class="card-title">Appartement de ouf !</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
-                    <a href="" class="btn btn-primary">Voir la Location</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h2 class=" text-center">Nos Loueurs Stars</h2>
-        <div class="row mt-5">
-            <div class="col-md-6">
-                <div class="card boder-secondadary mb-3">
-                    <div class="card-body">
-                        <div class="card-title">
-                            Petit Laurent
+<div class="container">
+    <div class="jumbotron mt-3">
+            <h1 class="display-3">Bienvenue sur LoloBnB</h1>
+                <p class="lead">Nous mettons en relation les voyageurs et lees propriétaires qui veulent profiter d'opportunités et gagné de l'argent en proposant leur bien en location !</p>
+                    <hr class="my-4">
+                <p>Vous êtes voyageur ? Et vous voulez voir ou vous pourrez vous loger pour votre déplacement ? </p>
+                <p class="lead"><a class="btn btn-primary btn-lg" href="{{path('ads_index')}}" role="button">Voir nos annonces !</a></p>
+            <h2 class=" text-center">Nos appartements Stars</h2>
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header text-center">
+                            3 chambres, <strong> 49 euros / nuits</strong> <br>
+                            <small>Pas encore noté</small>
                         </div>
-                        <div class="class-text">
-                            <img src="http://placehold.it/64x64" alt="" class="float-left mr-3">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, vitae?</p>
-                            <a href="" class="btn btn-primary float-right">Voir le profil</a>
+                        <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
+                        <div class="card-body">
+                        <h4 class="card-title">Appartement de ouf !</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
+                        <a href="" class="btn btn-primary">Voir la Location</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header text-center">
+                            3 chambres, <strong> 49 euros / nuits</strong> <br>
+                            <small>Pas encore noté</small>
+                        </div>
+                        <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
+                        <div class="card-body">
+                        <h4 class="card-title">Appartement de ouf !</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
+                        <a href="" class="btn btn-primary">Voir la Location</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header text-center">
+                            3 chambres, <strong> 49 euros / nuits</strong> <br>
+                            <small>Pas encore noté</small>
+                        </div>
+                        <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
+                        <div class="card-body">
+                        <h4 class="card-title">Appartement de ouf !</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
+                        <a href="" class="btn btn-primary">Voir la Location</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card boder-secondadary mb-3">
-                    <div class="card-body">
-                        <div class="card-title">
-                            Chamla Lior
+            <h2 class=" text-center">Nos Loueurs Stars</h2>
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card boder-secondadary mb-3">
+                        <div class="card-body">
+                            <div class="card-title">
+                                Petit Laurent
+                            </div>
+                            <div class="class-text">
+                                <img src="http://placehold.it/64x64" alt="" class="float-left mr-3">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, vitae?</p>
+                                <a href="" class="btn btn-primary float-right">Voir le profil</a>
+                            </div>
                         </div>
-                        <div class="class-text">
-                            <img src="http://placehold.it/64x64" alt="" class="float-left mr-3">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, vitae?</p>
-                            <a href="" class="btn btn-primary float-right">Voir le profil</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card boder-secondadary mb-3">
+                        <div class="card-body">
+                            <div class="card-title">
+                                Chamla Lior
+                            </div>
+                            <div class="class-text">
+                                <img src="http://placehold.it/64x64" alt="" class="float-left mr-3">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, vitae?</p>
+                                <a href="" class="btn btn-primary float-right">Voir le profil</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-            
-    
+                
+        
+    </div>
 </div>
+
 {% endblock %}
