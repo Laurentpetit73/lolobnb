@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Form\AdType;
 use App\Repository\AdRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdController extends AbstractController
 {
@@ -21,6 +22,22 @@ class AdController extends AbstractController
         ]);
     }
     /**
+     * @Route("/ads/new", name="ad_new")
+     */
+    public function create(Ad $ad=null)
+    {
+        if(!$ad){
+            $ad = new Ad();
+        }
+
+        $form = $this->createForm(AdType::class,$ad);
+
+        return $this->render('ad/new.html.twig', [
+            'form' => $form->createView(),
+               
+        ]);
+    }
+    /**
      * @Route("/ads/{slug}", name="ad_show")
      */
     public function show(Ad $ad)
@@ -30,4 +47,5 @@ class AdController extends AbstractController
             'ad' => $ad    
         ]);
     }
+    
 }
