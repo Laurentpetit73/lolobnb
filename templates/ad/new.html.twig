@@ -16,5 +16,67 @@
 <textarea id="area" name="{{full_name}}" required="required" class="form-control" placeholder="{{attr.placeholder}}"></textarea>
 {% endblock %}
 
+{% block _ad_images_widget %}
+<p> Ajouter votre propre image </p>
+{{ form_widget(form) }}
+<input type="hidden" id="widget_counter" value="0">   
+<div class="form-group">
+    <button type="button" id="add-image" class="btn btn-success"> Ajouter </button>
+</div>
+
+{% endblock %}
+
+{% block _ad_images_entry_row %}
+{{form_widget(form)}}
+{% endblock %}
+
+{% block _ad_images_entry_widget %}
+<div class="form-group" id="block_{{id}}">
+    <div class="row">
+        <div class="col-10">
+            <div class="row">
+                <div class="col">
+                    {{form_widget(form.url)}}
+                </div>
+                <div class="col">
+                {{form_widget(form.caption)}}
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <button type="button" data-action="delete" data-target="#block_{{id}}" class="btn btn-primary"> Supprimer </button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $('#add-image').click(function(){
+        
+        const index = +$('#widget_counter').val()
+        //je recupere le prototype du code html a generer
+        const tmpl = $('#ad_images').data('prototype').replace(/__name__/g,index)
+        //j'ajoute mon template
+        $('#ad_images').append(tmpl)
+        $('#widget_counter').val(index + 1)
+
+        handleRemove()
+
+    })
+    function handleRemove(){
+        const btns = $("button[data-action='delete']").click(function(){
+            const id = this.dataset.target
+            $(id).remove()      
+        }) 
+
+    }
+    handleRemove()
+    
+
+</script>
+{% endblock %}
+
 
 

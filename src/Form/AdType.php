@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Ad;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -40,10 +41,16 @@ class AdType extends AbstractType
                 'attr' => ['placeholder' => 'Rentrer un prix par nuit en euro'],
                 'label' => 'Prix'
             ])
+            ->add('images',CollectionType::class,
+            [
+                'entry_type' => ImageType::class,
+                'allow_add' => true,
+            ])
             ->add('submit',SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
                 'label' => 'Créer'
-            ]);
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
