@@ -4,21 +4,42 @@ namespace App\Form;
 
 use App\Entity\Ad;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AdType extends AbstractType
 {
+    private function param($titre, $placeholder){
+        return ['attr' => ['placeholder' => $placeholder],'label' => $titre];
+
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('price')
-            ->add('introduction')
-            ->add('content')
-            ->add('coverImage')
-            ->add('rooms')
+            ->add('title',TextType::class,$this->param('Titre','Entrer un titre pour votre annonce'))
+            ->add('coverImage',UrlType::class,[
+                'attr' => ['placeholder' => "Indiquer l'Url de l'image de couverture"],
+                'label' => 'Image de courverture'
+            ])
+            ->add('introduction',TextareaType::class,[
+                'attr' => ['placeholder' => 'Faite une breve description de votre annonce'],
+                'label' => 'Introduction'
+            ])
+            ->add('content',TextareaType::class,[
+                'attr' => ['placeholder' => 'Faite une breve description de votre annonce'],
+                'label' => 'Description'
+            ])
+            ->add('rooms',IntegerType::class,$this->param('nombre de chambre','Indiquer le nombre de chambre'))
+            ->add('price',MoneyType::class,[
+                'attr' => ['placeholder' => 'Rentrer un prix par nuit en euro'],
+                'label' => 'Prix'
+            ])
             ->add('submit',SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
                 'label' => 'Créer'

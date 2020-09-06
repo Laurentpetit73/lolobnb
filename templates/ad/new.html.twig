@@ -2,6 +2,8 @@
 
 {% block title %}-Nouvelle Annonce{% endblock %}
 
+{% form_theme form _self %}
+
 {% block body %}
 <div class="container">
     <h1>Creer une annonce</h1>
@@ -9,3 +11,10 @@
 </div>
 
 {% endblock %}
+
+{% block textarea_widget %}
+<textarea id="area" name="{{full_name}}" required="required" class="form-control" placeholder="{{attr.placeholder}}"></textarea>
+{% endblock %}
+
+
+
