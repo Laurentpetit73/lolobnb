@@ -16,8 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AdType extends AbstractType
 {
-    private function param($titre, $placeholder){
-        return ['attr' => ['placeholder' => $placeholder],'label' => $titre];
+    private function param($titre, $placeholder,array $option = []){
+        return ['attr' => array_merge(['placeholder' => $placeholder],$option),'label' => $titre,];
 
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -36,7 +36,7 @@ class AdType extends AbstractType
                 'attr' => ['placeholder' => 'Faite une breve description de votre annonce'],
                 'label' => 'Description'
             ])
-            ->add('rooms',IntegerType::class,$this->param('nombre de chambre','Indiquer le nombre de chambre'))
+            ->add('rooms',IntegerType::class,$this->param('nombre de chambre','Indiquer le nombre de chambre',['min'=> '0']))
             ->add('price',MoneyType::class,[
                 'attr' => ['placeholder' => 'Rentrer un prix par nuit en euro'],
                 'label' => 'Prix'

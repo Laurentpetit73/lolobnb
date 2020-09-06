@@ -7,10 +7,13 @@ use App\Repository\AdRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=AdRepository::class)
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(fields={"title"},message="une annonce possède déja ce titre")    
  */
 class Ad
 {
@@ -23,6 +26,7 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=10,max=255,minMessage = "Votre titre doit faire au moins {{ limit }} characters")
      */
     private $title;
 
@@ -38,21 +42,25 @@ class Ad
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=20,minMessage = "Votre introduction doit faire au moins {{ limit }} characters")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=50,minMessage = "Votre description doit faire au moins {{ limit }} characters")
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url
      */
     private $coverImage;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Positive
      */
     private $rooms;
 
