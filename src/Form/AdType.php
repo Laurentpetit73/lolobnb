@@ -29,11 +29,11 @@ class AdType extends AbstractType
                 'label' => 'Image de courverture'
             ])
             ->add('introduction',TextareaType::class,[
-                'attr' => ['placeholder' => 'Faite une breve description de votre annonce'],
+                'attr' => ['placeholder' => 'Faite une breve introduction de votre annonce'],
                 'label' => 'Introduction'
             ])
             ->add('content',TextareaType::class,[
-                'attr' => ['placeholder' => 'Faite une breve description de votre annonce'],
+                'attr' => ['placeholder' => 'Faite une description de votre annonce'],
                 'label' => 'Description'
             ])
             ->add('rooms',IntegerType::class,$this->param('nombre de chambre','Indiquer le nombre de chambre',['min'=> '0']))
@@ -45,10 +45,7 @@ class AdType extends AbstractType
             [
                 'entry_type' => ImageType::class,
                 'allow_add' => true,
-            ])
-            ->add('submit',SubmitType::class, [
-                'attr' => ['class' => 'btn btn-primary'],
-                'label' => 'Créer'
+                'allow_delete' => true,
             ])
             ;
     }
