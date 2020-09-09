@@ -4,6 +4,7 @@
 {% block title %}-Nos Anoonces{% endblock %}
 
 {% block body %}
+{% set user = ad.author %}
 
 <div class="container-fluid ban p-3" style="background-image: url({{ad.coverImage}}); min-height:350px">
     <div class="container">
@@ -46,19 +47,22 @@
                     <span class="sr-only">Next</span>
                 </a>
                 </div>
-                <a href="{{path('ad_edit',{slug:ad.slug})}}">Modifier</a>
+                {% if user is same as(app.user) %}
+                <a  class="btn btn-primary mt-3" href="{{path('ad_edit',{slug:ad.slug})}}">Modifier</a>
+                {% endif %}
         </div>
-        <div class="col">
+        <div class="col-md-4">
             <div class="row my-3">
-                <div class="col-4 ">
-                    <img src="http://placehold.it/64x64" alt="avatar de joseph">
+                <div class="col-md-3">
+                    <a href="{{path('user_show',{slug:user.slug})}}"><img src="{{user.picture}}" class="avatar avatar-medium" alt="avatar de {{user.firstName}}"></a>
                 </div>
-                <div class="col">
-                    <h3>Laurent petit</h3>
-                    <span class="badge badge-primary">3 annonces</span>  
+                <div class="col-md-9">
+                    <a href="{{path('user_show',{slug:user.slug})}}"><h3>{{user.fullName}} </h3></a>
+                    <span class="badge badge-primary">{{user.ads | length}} annonces</span> 
+                   <p> {{user.description | raw}} </p>
                 </div>
             </div>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis esse totam earum consequatur quae nam mollitia at iste laboriosam neque dicta, recusandae sapiente architecto nihil fugiat incidunt quidem voluptates? Nihil et obcaecati provident quas sit minus repellendus impedit! Suscipit, cum!</p>
+            
         </div>
     </div>
     

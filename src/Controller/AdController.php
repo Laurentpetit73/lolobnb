@@ -32,12 +32,14 @@ class AdController extends AbstractController
         $ad = new Ad();
         $form = $this->createForm(AdType::class,$ad);
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()){
             foreach($ad->getImages() as $image){
                 $image->setAd($ad);
                 $manager->persist($image);
 
             }
+            $ad->setAuthor($this->getUser());
             $manager->persist($ad);
             $manager->flush();
             $this->addFlash('success',"L'annonce <strong>".$ad->getTitle()."</strong> a bien été ajouté");
@@ -85,6 +87,7 @@ class AdController extends AbstractController
      */
     public function show(Ad $ad)
     {
+
         return $this->render('ad/show.html.twig', [
             'controller_name' => 'AdController',
             'ad' => $ad    

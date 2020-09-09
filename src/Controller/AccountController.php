@@ -115,5 +115,16 @@ class AccountController extends AbstractController
              
         ]);
     }
+    /**
+     * @Route("/account", name="account_user")
+     */
+    public function myAccount(AuthenticationUtils $utils)
+    {
+        $user = $this->getUser();
+        
+        return $this->render('user/index.html.twig', [
+            'user' => $user  
+        ]);
+    }
     
 }

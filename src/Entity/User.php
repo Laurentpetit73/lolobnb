@@ -254,5 +254,9 @@ class User implements UserInterface
     }
     public function getSalt(){}
     public function eraseCredentials(){}
+
+    public function getFullName(){
+        return $this->getFirstName().' '.$this->getLastName();
+    }
     
 }
