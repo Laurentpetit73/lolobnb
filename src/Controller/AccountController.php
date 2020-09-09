@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\PasswordUpdate;
 use App\Entity\User;
 use App\Form\AccountType;
+use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
 use App\Form\PasswordUpdateType;
+use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -65,6 +66,7 @@ class AccountController extends AbstractController
     }
     /**
      * @Route("/account/profil", name="account_profil")
+     * @IsGranted("ROLE_USER")
      */
     public function profil(  Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {
@@ -87,6 +89,7 @@ class AccountController extends AbstractController
     }
      /**
      * @Route("/account/update-pass", name="account_pass")
+     * @IsGranted("ROLE_USER")
      */
     public function updatePass(  Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {
@@ -117,6 +120,7 @@ class AccountController extends AbstractController
     }
     /**
      * @Route("/account", name="account_user")
+     * @IsGranted("ROLE_USER")
      */
     public function myAccount(AuthenticationUtils $utils)
     {

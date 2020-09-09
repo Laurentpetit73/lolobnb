@@ -10,6 +10,9 @@
                     <a href="{{url}}"><h4 class="card-title">{{ad.title}}</h4></a>
                     <p class="card-text">{{ad.introduction | raw}}</p>
                     <a href="{{url}}" class="btn btn-primary">Voir la Location</a>
+                    {% if app.user and app.user == ad.author %}
+                    <a  class="btn btn-primary" href="{{path('ad_edit',{slug:ad.slug})}}">Modifier</a>
+                    {% endif %}
                     </div>
                 </div>
             </div>

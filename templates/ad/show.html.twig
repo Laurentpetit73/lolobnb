@@ -47,8 +47,9 @@
                     <span class="sr-only">Next</span>
                 </a>
                 </div>
-                {% if user is same as(app.user) %}
-                <a  class="btn btn-primary mt-3" href="{{path('ad_edit',{slug:ad.slug})}}">Modifier</a>
+                {% if app.user and app.user == ad.author %}
+                <a  class="btn btn-primary" href="{{path('ad_edit',{slug:ad.slug})}}">Modifier</a>
+                <a  class="btn btn-danger" href="{{path('ad_delete',{slug:ad.slug})}}" onclick="return confirm( `Etes vous sur de vouloir suprimer l'annonce {{ad.title}} ?`)">Supprimer</a>
                 {% endif %}
         </div>
         <div class="col-md-4">
