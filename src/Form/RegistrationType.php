@@ -22,6 +22,7 @@ class RegistrationType extends ApplicationType
             ->add('firstName',TextType::class,$this->param('Prénom','Rentrer votre prénom'))
             ->add('lastName',TextType::class,$this->param('Nom','Rentrer votre nom'))
             ->add('hash',PasswordType::class,$this->param('Password','Rentrer votre password'))
+            ->add('hashConfirm',PasswordType::class,$this->param('Confirmer Password','Confirmer votre password'))
             ->add('picture',UrlType::class,$this->param('Avatar',"Rentrer l'url de votre avatar"))
             ->add('introduction',TextareaType::class,$this->param('Introduction','Rentrer une intro'))
             ->add('description',TextareaType::class,$this->param('Description','Rentrer une description'))

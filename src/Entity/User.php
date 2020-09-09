@@ -8,10 +8,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\HasLifecycleCallbacks   
+ * @ORM\HasLifecycleCallbacks
+ * * @UniqueEntity(
+ *     fields={"email"},
+ *     message="Cette email existe déja"
+ * )   
  */
 class User implements UserInterface
 {
@@ -24,6 +29,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      * @Assert\Length(min=2,max=255,minMessage = "Votre prénom doit faire au moins {{ limit }} characters")
      */
     private $firstName;
@@ -31,11 +37,15 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min=2,max=255,minMessage = "Votre nom doit faire au moins {{ limit }} characters")
+     * @Assert\NotBlank()
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email(message="Veuillez renseigner un email valide !")
+     * 
      */
     private $email;
 
@@ -47,19 +57,28 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      * 
      */
     private $hash;
 
     /**
+     * @Assert\EqualTo(propertyPath="hash",message = "Vous n'avez pas correctement confirmer votre mot de pass" )
+     */
+    public $hashConfirm;
+
+    /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=20,max=255,minMessage = "Votre nom doit faire au moins {{ limit }} characters")
+     * @Assert\Length(min=10,max=255,minMessage = "Votre nom doit faire au moins {{ limit }} characters")
+     * @Assert\NotBlank()
+     * 
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=50,minMessage = "Votre nom doit faire au moins {{ limit }} characters")
+     * @Assert\Length(min=30,minMessage = "Votre nom doit faire au moins {{ limit }} characters")
+     * @Assert\NotBlank()
      */
     private $description;
 
