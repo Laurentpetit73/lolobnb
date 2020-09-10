@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}-Reservation n°{{booking.id}}{% endblock %}
+
+
+{% block body %}
+
+{% set ad = booking.ad %}
+{% set author = ad.author %}
+<div class="container">
+    <h1>Votre reservation n°{{booking.id}} </h1>
+    <div class="row">
+        <div class="col">
+            <div class="alert-alert-light">
+                <h2>Détail :</h2>
+                <dl class="row">
+                    <dt class="col-md-4">Numéro</dt>
+                    <dd class="col-8">{{booking.id}}</dd>
+                    <dt class="col-md-4">Date d'arrivée</dt>
+                    <dd class="col-8">{{booking.startDate | date('d/m/Y')}}</dd>
+                    <dt class="col-md-4">Date de départ</dt>
+                    <dd class="col-8">{{booking.endDate | date('d/m/Y')}}</dd>
+                    <dt class="col-md-4">Nombre de Nuits</dt>
+                    <dd class="col-8">{{booking.duration}}</dd>
+                    <dt class="col-md-4">Montant Total</dt>
+                    <dd class="col-8">{{booking.amount}}</dd>
+                    <dt class="col-md-4">Commentaire</dt>
+                    <dd class="col-8">{{booking.comment}}</dd>
+                </dl>
+
+                <hr>
+
+                <h2 class="alert-heading mb-3">Votre hôte</h2>
+                    <div class="row">
+                        <div class="col-3">
+                            <a href="{{path('user_show',{slug:author.slug})}}"><img src="{{author.picture}}" class="avatar" alt=""></a>
+                        </div>
+                         <div class="col-9">
+                         <a href="{{path('user_show',{slug:author.slug})}}"><h4>{{author.fullname}}</h4></a>
+                         <span class="badge badge-primary">{{author.ads | length}} annonces</span>
+                        </div>
+                        {{author.description | raw}}
+                         <a href="{{path('user_show',{slug:author.slug})}} " class="btn btn-primary">Voir le Profil</h4></a>
+                    </div>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

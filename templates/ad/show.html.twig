@@ -14,7 +14,7 @@
             <strong>{{ad.rooms}} chambres</strong> pour <strong>{{ad.price}} euro</strong> par nuit
         
         </p>
-        <a href="#" class="btn btn-primary">Reserver</a>
+        <a href="{{path('booking_new',{slug:ad.slug})}}" class="btn btn-primary">Reserver</a>
 
     </div>
 </div>
