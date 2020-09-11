@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use App\Repository\AdRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -258,5 +259,16 @@ class Ad
         }
 
         return $this;
+    }
+    public function getNotAvailableDays(){
+        $notavailabledays = [];
+        foreach($this->bookings as $booking){
+            $resultat = range($booking->getStartDate()->getTimestamp(),$booking->getEndDate()->getTimestamp(),24*60*60*1000);
+
+        };
+        $days = array_map(function($dayTimestamp){
+            return new DateTime(date('Y-m-d',$dayTimestamp));
+        },$resultat);
+
     }
 }

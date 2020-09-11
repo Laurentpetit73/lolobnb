@@ -21,6 +21,7 @@
         </div>
     </div>
     <div class="mt-3">
+        {{user.introduction | raw}}
         {{user.description | raw}}
         <hr>
         <h2>Les annonces de {{user.fullName}}</h2>

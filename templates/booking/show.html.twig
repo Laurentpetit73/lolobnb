@@ -9,6 +9,12 @@
 {% set author = ad.author %}
 <div class="container">
     <h1>Votre reservation n°{{booking.id}} </h1>
+    {% if app.request.query.get('withalert')%}
+        <div class="alert alert-success">
+            <h4 class="alert-heading">Bravo </h4>
+            <p>Votre reservation auprès de <strong>{{author.fullname}}</strong> a bien été effectué</p>
+        </div>
+    {% endif %}
     <div class="row">
         <div class="col">
             <div class="alert-alert-light">
@@ -45,6 +51,13 @@
             </div>
         </div>
         <div class="col">
+            <div class="alert alert-light">
+                <h2 class="alert-heading">Votre hébergement :</h2>
+                <a href="{{path('ad_show',{slug:ad.slug})}}"><h4>{{ad.title}}</h4></a>
+                <img src="{{ad.coverImage}}" alt="Image de couverture de l'annonce {{ad.title}}" class="img-fluid">
+                <a href="{{path('ad_show',{slug:ad.slug})}}" class="btn btn-primary mt-3">Voir l'annonce</h4></a>
+
+            </div>
         </div>
     </div>
 </div>

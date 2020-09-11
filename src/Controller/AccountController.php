@@ -68,7 +68,7 @@ class AccountController extends AbstractController
      * @Route("/account/profil", name="account_profil")
      * @IsGranted("ROLE_USER")
      */
-    public function profil(  Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
+    public function profil( Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {
         $user = $this->getUser();
         $form = $this->createForm(AccountType::class, $user);

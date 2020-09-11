@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BookingRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BookingRepository::class)
@@ -33,11 +34,13 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Type("\DateTimeInterface")
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Type("\DateTimeInterface")
      */
     private $endDate;
 
@@ -161,5 +164,9 @@ class Booking
     public function getDuration(){
         $diff = $this->endDate->diff($this->startDate);
         return  $diff->days;
+    }
+
+    public function isBookableDates(){
+        
     }
 }
