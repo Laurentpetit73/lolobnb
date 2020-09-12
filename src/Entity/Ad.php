@@ -263,12 +263,15 @@ class Ad
     public function getNotAvailableDays(){
         $notavailabledays = [];
         foreach($this->bookings as $booking){
-            $resultat = range($booking->getStartDate()->getTimestamp(),$booking->getEndDate()->getTimestamp(),24*60*60*1000);
+            $resultat = range($booking->getStartDate()->getTimestamp(),$booking->getEndDate()->getTimestamp(),24*60*60);
 
-        };
+        
         $days = array_map(function($dayTimestamp){
             return new DateTime(date('Y-m-d',$dayTimestamp));
         },$resultat);
 
+        $notavailabledays = array_merge($notavailabledays,$days);
+        }
+        return $notavailabledays;
     }
 }

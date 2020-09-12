@@ -37,3 +37,7 @@ box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important;
     max-width: 32px ;
     max-height: 32px ;
 }
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+    color:red !important;
+}

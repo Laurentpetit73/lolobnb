@@ -35,12 +35,14 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Type("\DateTimeInterface")
+     * @Assert\GreaterThan("today UTC",message="La date d'arrivé doit être superieur à celle de départ")
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Type("\DateTimeInterface")
+     * @Assert\GreaterThan(propertyPath="startDate", message="La date départ doit être superieur à celle d'arrivée")
      */
     private $endDate;
 
@@ -167,6 +169,32 @@ class Booking
     }
 
     public function isBookableDates(){
-        
+
+        $notavailableday = $this->ad->getNotAvailableDays();
+        $bookingdays = $this->getCurrentDate();
+
+        $formatday = function($day){return $day->format('Y-m-D');};
+
+        $notavailable = array_map($formatday,$notavailableday);
+        $booking = array_map($formatday,$bookingdays);
+
+        foreach($booking as $test){
+            if(array_search($test, $notavailable)==! false ){
+                return false;
+            }
+        }
+        return true;
+
+    }
+    public function getCurrentDate(){
+        $days = [];
+        $resultat = range($this->getStartDate()->getTimestamp(),$this->getEndDate()->getTimestamp(),24*60*60);
+        $days = array_map(function($dayTimestamp){
+            return new DateTime(date('Y-m-d',$dayTimestamp));
+        },$resultat);
+
+        return $days;
+
+
     }
 }
