@@ -38,6 +38,14 @@ box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important;
     max-height: 32px ;
 }
 
+.avatar-micro{
+    max-width: 20px ;
+    max-height: 20px ;
+}
+
 .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
     color:red !important;
 }
+ .rating i{
+     color:#DAA520;
+ }

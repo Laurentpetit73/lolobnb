@@ -51,6 +51,36 @@
                 <a  class="btn btn-primary" href="{{path('ad_edit',{slug:ad.slug})}}">Modifier</a>
                 <a  class="btn btn-danger" href="{{path('ad_delete',{slug:ad.slug})}}" onclick="return confirm( `Etes vous sur de vouloir suprimer l'annonce {{ad.title}} ?`)">Supprimer</a>
                 {% endif %}
+                <hr>
+                {% if ad.comments|length > 0 %}
+                <h2 class="mb-3">Commentaires de nos voyageurs</h2>
+                <div class="alert alert-info">
+                <h4 class="alert-heading text-center">
+                <div class="row align-items-center">
+                    <div class="col">
+                    Note global donné par nos voyageur : {{ad.averageRate}} 
+                    </div>
+                    <div class="col">
+                        {% include 'partials/rating.html.twig' with {'rating' : ad.averageRate} %} 
+                        <br>
+                    <small>(Calculé sur {{ad.comments|length}} commentaire)</small>
+                    </div>
+                </div>
+                </h4>
+                </div>
+                    {% for comment in ad.comments %}
+                    <div class="bg-light rounded mb-3 py3 px3">
+                    <strong>{{comment.author.firstName}}</strong> a dit :
+                    <blockquote>
+                    {{comment.content}}
+                    </blockquote> 
+                    <strong> Note donné  :  </strong>
+                    {% include 'partials/rating.html.twig' with {'rating' : comment.rating} %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <p>Cette annonce n'a pas encore été reservé</p>
+                {% endif %}
         </div>
         <div class="col-md-4">
             <div class="row my-3">

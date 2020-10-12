@@ -1,0 +1,135 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifaication d'une annonce {{ ad.id }}{% endblock %}
+
+{% form_theme form _self %}
+
+{% block body %}
+<div class="container-fluid">
+<h1 class="py-3 text-center">Modifier une annonce</h1>
+<div class="row">
+    <div class="col-6">
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        {{form_end(form)}}
+    </div>
+    <div class="col-6">
+        <div class="card bg-light">
+            <div class="card-header">
+            <h4 class="card-title">Les Reservations :</h4>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Voyageur</th>
+                            <th class="text-center">Date de réservation </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in ad.bookings  %}
+                        <tr>
+                            <td>{{book.id}}</td>
+                            <td>{{book.booker.fullName}}</td>
+                            <td class="text-center">{{book.createdAt | date("d/m/Y")}}</td>
+                            <td>
+                            <a class="btn btn-primary" href="{{ path('admin_ad_edit',{'slug':ad.slug})}}"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" href=""><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+
+                
+                </table>
+            </div>
+
+        </div>
+        <div class="card bg-light">
+            <div class="card-header">
+            <h4 class="card-title">Les Commentaire :</h4>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Voyageur</th>
+                            <th class="text-center">Note </th>
+                            <th>Commentaire</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for comment in ad.comments  %}
+                        <tr>
+                            <td>{{comment.id}}</td>
+                            <td>{{comment.author.fullName}}</td>
+                            <td class="text-center">{{comment.rating}}</td>
+                            <td>{{comment.content}}</td>
+                            <td>
+                            <a class="btn btn-primary" href="{{ path('admin_ad_edit',{'slug':ad.slug})}}"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" href=""><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+
+                
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
+
+{% block _ad_images_widget %}
+    {{ form_widget(form) }}
+{% endblock  %}
+
+{% block _ad_images_entry_row %}
+<div id="block_{{id}}">
+    {{ form_widget(form) }}
+</div>
+{% endblock  %}
+
+{% block _ad_images_entry_widget %}
+    <div class="row mb-3">
+        <div class="col-4">
+        {% if value %}
+        <img src="{{value.url}}" alt="" class="img-fluid">
+        {% endif %}
+        </div>
+        <div class="col-6 ">
+        {{ form_row(form.caption)}}
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-danger" data-action="delete" data-target="#block_{{id}}">
+            <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </div>
+{% endblock  %}
+
+{% block javascripts %}
+<script> 
+    $(document).ready(()=>{
+        $('[data-action="delete"]').on('click',function(){
+            const target = this.dataset.target
+            $(target).remove()
+        })
+    })        
+</script>
+
+{% endblock %}
+
+

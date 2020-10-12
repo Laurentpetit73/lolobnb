@@ -34,7 +34,7 @@ class AdType extends ApplicationType
                 'attr' => ['placeholder' => 'Faite une description de votre annonce'],
                 'label' => 'Description'
             ])
-            ->add('rooms',IntegerType::class,$this->param('nombre de chambre','Indiquer le nombre de chambre',['min'=> '0']))
+            ->add('rooms',IntegerType::class,$this->param('nombre de chambre','Indiquer le nombre de chambre',['attr' => ['min'=> '0']]))
             ->add('price',MoneyType::class,[
                 'attr' => ['placeholder' => 'Rentrer un prix par nuit en euro'],
                 'label' => 'Prix'

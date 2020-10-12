@@ -35,7 +35,7 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Type("\DateTimeInterface")
-     * @Assert\GreaterThan("today UTC",message="La date d'arrivé doit être superieur à celle de départ")
+     * @Assert\GreaterThan("today UTC",message="La date d'arrivé doit être superieur à celle de départ",groups={"front"})
      */
     private $startDate;
 
@@ -173,13 +173,15 @@ class Booking
         $notavailableday = $this->ad->getNotAvailableDays();
         $bookingdays = $this->getCurrentDate();
 
-        $formatday = function($day){return $day->format('Y-m-D');};
+        $formatday = function($day){return $day->format('Y-m-d');};
 
         $notavailable = array_map($formatday,$notavailableday);
         $booking = array_map($formatday,$bookingdays);
+        dump($notavailable);
+        dump($booking);
 
         foreach($booking as $test){
-            if(array_search($test, $notavailable)==! false ){
+            if(array_search($test, $notavailable) !== false ){
                 return false;
             }
         }

@@ -24,8 +24,8 @@ class BookingType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('startDate',TextType::class, $this->param('Arrivé',"Date d'arrivée",['autocomplete'=>"off"]))
-            ->add('endDate',TextType::class, $this->param('Départ',"Date de départ",['autocomplete'=>"off"]))
+            ->add('startDate',TextType::class, $this->param('Arrivé',"Date d'arrivée",['attr' => ['autocomplete'=>"off"]]))
+            ->add('endDate',TextType::class, $this->param('Départ',"Date de départ",['attr' => ['autocomplete'=>"off"]]))
             ->add('comment',TextareaType::class,[
                 'attr' => ['placeholder' => 'Vous pouvez ajouter un commentaire'],
                 'label' => 'Commentaire'
@@ -39,6 +39,7 @@ class BookingType extends ApplicationType
     {
         $resolver->setDefaults([
             'data_class' => Booking::class,
+            'validation_groups' => ["Default","front"]
         ]);
     }
 }
