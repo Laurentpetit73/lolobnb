@@ -1,10 +1,10 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Administration des annonces{% endblock %}
+{% block title %}Administration des reservations{% endblock %}
 
 {% block body %}
 <div class="container-fluid">
-<h1 class="y-5">Gezstion des annonces</h1>
+<h1 class="y-5">Gestion des Reservations</h1>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -17,7 +17,7 @@
                 <th >Action</th>
             </tr>
             <tbody>
-            {% for booking in bookings %}
+            {% for booking in pagination.data %}
                 <tr>
                     <td>{{booking.id}}</td>
                     <td>{{booking.createdAt|date('d/m/y')}}</td>
@@ -35,8 +35,8 @@
                 </tr>
             {% endfor %}
             </tbody>
-
         </thead>
     </table>
+     {{pagination.render()}}
 </div>
 {% endblock %}
