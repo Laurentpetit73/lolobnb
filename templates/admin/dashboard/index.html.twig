@@ -1,0 +1,125 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card bg-primary text-white mb-3 text-center">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fas fa-users fa-3x"></i>
+                        </div>
+                        <div class="col-8">
+                            <h4 class="card-title">{{ stats.users }} Utilisateurs Inscrit</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card bg-dark text-white mb-3 text-center">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fas fa-hotel fa-3x"></i>
+                        </div>
+                        <div class="col-8">
+                            <h4 class="card-title">{{ stats.ads }} Annonces postée</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card bg-danger text-white mb-3 text-center">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fas fa-folder fa-3x"></i>
+                        </div>
+                        <div class="col-8">
+                            <h4 class="card-title">{{ stats.bookings }} Réservations</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card bg-success text-white mb-3 text-center">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fas fa-comment fa-3x"></i>
+                        </div>
+                        <div class="col-8">
+                            <h4 class="card-title">{{ stats.comments }} Commentaires</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card bg-danger text-white">
+                <div class="card-header">
+                    <h4 class="card-title">Les annonces les plus popolaire</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover text-white">
+                        <thead>
+                            <tr>
+                            <th scope="col">Annonce</th>
+                            <th scope="col">Proprio</th>
+                            <th scope="col">Moyenne</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for best in bestAds %}
+                            <tr>
+                                <td>{{best.title}}</th>
+                                <td>{{best.firstName}} {{best.lastName}} </td>
+                                <td class="text-center"><span class="badge badge-dark">{{best.note|number_format(1, ',') }}</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card bg-primary text-white">
+                <div class="card-header">
+                    <h4 class="card-title">Les annonces les moins popolaire</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover text-white">
+                        <thead>
+                            <tr>
+                            <th scope="col">Annonce</th>
+                            <th scope="col">Proprio</th>
+                            <th scope="col">Moyenne</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for worst in worstAds %}
+                            <tr>
+                                <td>{{worst.title}}</th>
+                                <td>{{worst.firstName}} {{worst.lastName}} </td>
+                                <td class="text-center"><span class="badge badge-dark">{{worst.note|number_format(1, ',') }}</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+{% endblock %}
+

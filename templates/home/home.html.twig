@@ -11,49 +11,25 @@
                 <p>Vous êtes voyageur ? Et vous voulez voir ou vous pourrez vous loger pour votre déplacement ? </p>
                 <p class="lead"><a class="btn btn-primary btn-lg" href="{{path('ads_index')}}" role="button">Voir nos annonces !</a></p>
             <h2 class=" text-center">Nos appartements Stars</h2>
+            
             <div class="row mt-5">
+                {% for ad in bestAds %}
+                {% set url = path('ad_show', {slug: ad.annonce.slug}) %}
                 <div class="col-md-4">
                     <div class="card bg-light mb-3 card-bnb">
                         <div class=" text-center my-3">
-                            3 chambres, <strong> 49 euros / nuits</strong> <br>
-                            <small>Pas encore noté</small>
+                            {{ad.annonce.rooms}} chambres, <strong> {{ad.annonce.price}} euros / nuits</strong> <br>
+                           {% include 'partials/rating.html.twig' with {'rating' : ad.avgRatings} %}
                         </div>
-                        <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
+                         <a href="{{url}}"><img src="{{ad.annonce.coverImage}}" alt="" style="width:100%; height:200px;display:block"></a>
                         <div class="card-body">
-                        <h4 class="card-title">Appartement de ouf !</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
-                        <a href="" class="btn btn-primary">Voir la Location</a>
+                        <h4 class="card-title">{{ad.annonce.title}}</h4>
+                        <p class="card-text">{{ad.annonce.introduction|raw}}</p>
+                        <a href="{{url}}" class="btn btn-primary">Voir la Location</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card bg-light mb-3">
-                        <div class="card-header text-center">
-                            3 chambres, <strong> 49 euros / nuits</strong> <br>
-                            <small>Pas encore noté</small>
-                        </div>
-                        <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
-                        <div class="card-body">
-                        <h4 class="card-title">Appartement de ouf !</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
-                        <a href="" class="btn btn-primary">Voir la Location</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-light mb-3">
-                        <div class="card-header text-center">
-                            3 chambres, <strong> 49 euros / nuits</strong> <br>
-                            <small>Pas encore noté</small>
-                        </div>
-                        <img src="http://placehold.it/1000x400" alt="" style="width:100%; height:200px;display:block">
-                        <div class="card-body">
-                        <h4 class="card-title">Appartement de ouf !</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam neque aliquid quidem suscipit ut illo ipsa est accusantium nemo optio?</p>
-                        <a href="" class="btn btn-primary">Voir la Location</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <h2 class=" text-center">Nos Loueurs Stars</h2>
             <div class="row mt-5">
