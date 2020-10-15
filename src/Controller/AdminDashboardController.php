@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminDashboardController extends AbstractController
 {
     /**
+     * @Route("/admin", name="admin_home")
      * @Route("/admin/dashboard", name="admin_dashboard")
      */
     public function index(EntityManagerInterface $manager, Stats $stats)

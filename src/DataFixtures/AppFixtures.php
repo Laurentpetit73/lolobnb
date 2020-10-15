@@ -72,13 +72,13 @@ class AppFixtures extends Fixture
             ->setPrice($faker->numberBetween(40,200)) 
             ->setIntroduction('<p>'.$faker->paragraph(2).'</p>')
             ->setContent('<p>'.implode('</p><p>',$faker->paragraphs()).'</p>')
-            ->setCoverImage($faker->imageUrl(1000,350))
+            ->setCoverImage('http://placeimg.com/1000/350/arch')
             ->setRooms($faker->numberBetween(1,5))
             ->setAuthor($user)
             ;
         for($j=1; $j<mt_rand(3,6);$j++){
             $img = new Image();
-            $img->setUrl($faker->imageUrl(700,350))
+            $img->setUrl('http://placeimg.com/1000/350/arch')
                             ->setCaption($faker->sentence())
                             ->setAd($ad);
 
